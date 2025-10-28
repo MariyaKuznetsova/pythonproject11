@@ -30,7 +30,6 @@ class MailingsAdmin(admin.ModelAdmin):
     )
     search_fields = (
         "client",
-        "status",
     )
 
 

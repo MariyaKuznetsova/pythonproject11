@@ -59,12 +59,7 @@ class Mailings(models.Model):
         max_length=15, choices=STATUS_CHOICES, default="created_at"
     )
 
-    text = models.ForeignKey(
-        Messages,
-        on_delete=models.CASCADE,
-        verbose_name="Сообщение"
-    )
-
+    text = models.ForeignKey(Messages, on_delete=models.CASCADE, verbose_name="Сообщение")
     client = models.ManyToManyField(
         Client,
         verbose_name="Получатели"
@@ -128,7 +123,6 @@ class Mailings(models.Model):
             "end_send",
             "status",
             "text",
-            "client",
             "owner",
         ]
         # permissions = [
