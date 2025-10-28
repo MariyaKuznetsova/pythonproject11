@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "newsletter",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -138,8 +139,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_REDIRECT_URL = "catalog:product_list"
-LOGOUT_REDIRECT_URL = "catalog:product_list"
+LOGIN_REDIRECT_URL = "newsletter:mailings_list"
+LOGOUT_REDIRECT_URL = "newsletter:mailings_list"
 
 LOGIN_URL = "users:login"
 
