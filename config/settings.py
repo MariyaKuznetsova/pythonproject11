@@ -86,6 +86,9 @@ DATABASES = {
         "PASSWORD": os.getenv("PASSWORD"),
         "HOST": os.getenv("HOST"),
         "PORT": os.getenv("PORT"),
+        "OPTIONS": {
+            "client_encoding": "utf8",
+        },
     }
 }
 
