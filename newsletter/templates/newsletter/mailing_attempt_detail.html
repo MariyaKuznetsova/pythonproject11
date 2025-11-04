@@ -1,0 +1,25 @@
+{% extends 'newsletter/base.html' %}
+{% block content %}
+<div class="album py-9 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow-sm">
+
+                    <div class="card-body">
+                  <h2 class="pt-3 pb-2 mb-3">Рассылка: {{ object.mailing.text_message.subject }}</h2>
+                          <p class="card-text">Статус: {{ object.status_new }}</p>
+                          <p class="card-text">Ответ сервера: {{ object.post_response }}</p>
+                          <p class="card-text">Дата попытки: {{ object.start_time|date:"d.m.Y H:i" }}</p>
+                          <p class="card-text">Получатели:
+                      <ul>
+            {% for client in object.mailing.clients.all %}
+            <li>{{ client.email }}</li>
+            {% endfor %}
+        </ul>
+                      </p>
+
+                      <a class="btn btn-primary" href="{% url 'newsletter:mailing_attempt_list' %}" role="article">Назад</a>
+    </div>
+</div>
+{% endblock %}

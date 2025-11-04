@@ -68,12 +68,11 @@
     {% include 'newsletter/includes/inc_menu.html' %}
     </header>
     <main>
-        <section class="py-5 text-center container">
-            <div class="row py-lg-5">
+        <section class="py-3 text-center container">
+            <div class="row py-lg-3">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">Сервис рассылок</h1>
                     <p class="lead text-body-secondary">Здесь вы можете посмотреть все данные по рассылкам.</p>
-                    <a class="btn btn-primary" href="{% url 'newsletter:mailing_create' %}" role="article">Создать</a>
                     {% if user.is_authenticated %}
                     {% csrf_token %}
                             <p class="lead text-body-secondary">Добро пожаловать, {{ user.email }}!</p>

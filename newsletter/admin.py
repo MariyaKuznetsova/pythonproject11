@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from newsletter.models import Client, Messages, Mailings, MailingsAttempt
+from newsletter.models import Client, Message, Mailing, MailingAttempt
 
 
 @admin.register(Client)
@@ -10,15 +10,15 @@ class ClientAdmin(admin.ModelAdmin):
     search_fields = ("email", "s_o_name")
 
 
-@admin.register(Messages)
-class MessagesAdmin(admin.ModelAdmin):
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
     list_display = ("id", "subject",)
     list_filter = ("subject",)
     search_fields = ("subject",)
 
 
-@admin.register(Mailings)
-class MailingsAdmin(admin.ModelAdmin):
+@admin.register(Mailing)
+class MailingAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "first_send",
@@ -26,16 +26,16 @@ class MailingsAdmin(admin.ModelAdmin):
         "status",
     )
     list_filter = (
-        "client",
+        "clients",
         "status",
     )
     search_fields = (
-        "client",
+        "clients",
     )
 
 
-@admin.register(MailingsAttempt)
-class MailingsAttemptAdmin(admin.ModelAdmin):
+@admin.register(MailingAttempt)
+class MailingAttemptAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "start_time",
