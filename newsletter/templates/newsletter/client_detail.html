@@ -1,0 +1,29 @@
+{% extends 'newsletter/base.html' %}
+{% block content %}
+<div class="album py-9 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">Клиент: {{ object.s_o_name }}</p>
+                        <p class="card-text">Email: {{ object.email }}</p>
+                        <p class="card-text">Комментарий: {{ object.comment }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="col-8">
+                                {% if object.owner == request.user %}
+                                <a class="btn btn-danger" href="{% url 'newsletter:client_delete' client.pk %}" role="article">Удалить</a>
+                                <a class="btn btn-primary" href="{% url 'newsletter:client_update' client.pk %}" role="article">Редактировать</a>
+                                {% endif %}
+                                </div>
+                                <div class="col-5">
+                                <a class="btn btn-primary" href="{% url 'newsletter:client_list' %}" role="article">Назад</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

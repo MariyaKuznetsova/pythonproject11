@@ -1,0 +1,54 @@
+{% extends 'newsletter/base.html' %}
+{% block content %}
+<div class="album py-9 bg-body-tertiary">
+    <div class="container">
+        <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h1 class="mb-4 text-center">Статистика рассылок</h1>
+                        <p class="card-text">Всего рассылок: {{ total_mailings }}</p>
+                        <p class="card-text">Активных рассылок: {{ active_mailings }}</p>
+                        <p class="card-text">Уникальных получателей: {{ unique_clients }}</p>
+                        </div>
+                    </div>
+                </div></div>
+            </div>
+        </div>
+<section class="py-1 text-center container">
+            <div class="row py-lg-2">
+                <div class="col-lg-2 col-md-2 mx-auto">
+                    <a class="btn btn-success" href="{% url 'newsletter:mailing_create' %}" role="article">Создать рассылку</a>
+
+                </div>
+            </div>
+        </section>
+<div class="album py-9 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            {% for mailing in object_list %}
+            {% if mailing.owner == request.user or perms.mailing.view_mailing %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">Дата и время начало рассылки: {{ mailing.first_send|date:"d M Y" }}</p>
+                        <p class="card-text">Дата и время окончание рассылки: {{ mailing.end_send|date:"d M Y" }}</p>
+                        <p class="card-text">Статус: {{ mailing.status }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="col-8">
+                                {% csrf_token %}
+                                <a class="btn btn-primary" href="{% url 'newsletter:mailing_detail' mailing.pk %}" role="article">Посмотреть</a>
+                                {% if mailing.owner == request.user or perms.mailing.view_mailing %}
+                                <a class="btn btn-primary" href="{% url 'newsletter:send_mailing' mailing.pk %}" role="article">Отправить</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

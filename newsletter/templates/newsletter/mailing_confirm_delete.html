@@ -1,0 +1,21 @@
+{% extends 'newsletter/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Вы действительно хотите удалить рассылку?</p>
+            {% csrf_token %}
+            <div class="col-4">
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href="{% url 'newsletter:mailing_list' %}" class="btn btn-secondary">Отмена</a>
+             </div>
+                    </div>
+                </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
